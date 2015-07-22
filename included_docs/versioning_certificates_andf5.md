@@ -1,16 +1,16 @@
 The initial request for a Pivotal Cloud Foundry (PCF) install was to include four tiles:  OpsManager (version 1.5.0), Elastic Runtime (version 1.5.1), OpsMetrics (version 1.4) and Spring Cloud (beta tile, version 0.1).  The Spring Cloud tile contains dependencies on the RabbitMQ (version X.X) and MySQL (version X.X) tiles.
 
-A consideration for installing PCF is that two networks are recommended for a proper install.  These networks are named sys.<network suffix> and apps.<network suffix> where network suffix indicates the environment in which PCF is being deployed.  The network suffix follows this convention:
+A consideration for installing PCF is that two networks are recommended for a proper install.  These networks are named ```sys.<network suffix>``` and ```apps.<network suffix>``` where network suffix indicates the environment in which PCF is being deployed.  The network suffix follows this convention:
 
-<name>.<environment>.<data center>.cfdish.io
+```<name>.<environment>.<data center>.cfdish.io```
 
-where <name> would be in <INT, DMZ, CON, BUS, PCI, NONPCI> reflecting internal, DMZ, Consumer, Business, PCI-compliant and Non-PCI-Compliant, respectively.
+where ```<name>``` would be in ```<INT, DMZ, CON, BUS, PCI, NONPCI>``` reflecting internal, DMZ, Consumer, Business, PCI-compliant and Non-PCI-Compliant, respectively.
 
-and <environment> would be in <DEV, TEST, PROD>
+and ```<environment>``` would be in ```<DEV, TEST, PROD>```
 
-and <data center> would be in <MER, CHY>
+and ```<data center>``` would be in ```<MER, CHY>```
 
-Because PCF, under the covers, generates DNS names for VMs it creates for its use, we are required to have wildcard DNS entries for *.apps.<network suffix> and *.sys.<network suffix>.  Further, because all communication is to be over SSL, we will also require wildcard certificates for *.apps.<network suffix> and *.sys.<network suffix>.
+Because PCF, under the covers, generates DNS names for VMs it creates for its use, we are required to have wildcard DNS entries for ```*.apps.<network suffix>``` and ```*.sys.<network suffix>.```  Further, because all communication is to be over SSL, we will also require wildcard certificates for ```*.apps.<network suffix>``` and ```*.sys.<network suffix>.```
 
 The issue of using Symantec-signed certificates arose.  Because we are installing in a total of twelve environments, and we are required to have two wildcard certificates per environment, we were looking at a total of 24 Symantec-signed wildcard certificates.  This would have been an unexpected cost to the program.  
 
